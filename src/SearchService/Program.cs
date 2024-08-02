@@ -1,5 +1,8 @@
+using System.Net;
 using MongoDB.Driver;
 using MongoDB.Entities;
+using Polly;
+using Polly.Extensions.Http;
 using SearchService;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,7 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
-builder.Services.AddHttpClient<AuctionSvcHttpClient>();
+builder.Services.AddHttpClient<AuctionSvcHttpClient>().AddPolicyHandler(GetPolicy());
 
 var app = builder.Build();
 
@@ -25,3 +28,10 @@ catch (Exception e)
 }
 
 app.Run();
+
+// Keep retrying HTTP request (to auction service) if the service is not up
+static IAsyncPolicy<HttpResponseMessage> GetPolicy()
+    => HttpPolicyExtensions
+        .HandleTransientHttpError()
+        .OrResult(msg => msg.StatusCode == HttpStatusCode.NotFound)
+        .WaitAndRetryForeverAsync(_ => TimeSpan.FromSeconds(3));
