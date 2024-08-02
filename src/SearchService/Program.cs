@@ -1,6 +1,4 @@
 using System.Net;
-using MongoDB.Driver;
-using MongoDB.Entities;
 using Polly;
 using Polly.Extensions.Http;
 using SearchService;
