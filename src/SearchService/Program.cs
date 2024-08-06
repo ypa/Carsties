@@ -19,6 +19,13 @@ builder.Services.AddMassTransit(x =>
 
     x.UsingRabbitMq((context, cfg) =>
     {
+        cfg.ReceiveEndpoint("search-auction-created", endpoint =>
+        {
+            // Retry up to 5 times waiting 5 seconds in between
+            endpoint.UseMessageRetry(r => r.Interval(5, 5));
+            endpoint.ConfigureConsumer<AuctionCreatedConsumer>(context);
+        });
+
         cfg.ConfigureEndpoints(context);
     });
 });
