@@ -106,6 +106,8 @@ public class AuctionsController : ControllerBase
 
         _context.Auctions.Remove(auction);
 
+        await _publishEndpoint.Publish<AuctionDeleted>(new { Id = auction.Id.ToString() });
+
         var result = await _context.SaveChangesAsync() > 0;
         if (!result) return BadRequest("Count not update DB");
 
