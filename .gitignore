@@ -482,3 +482,7 @@ $RECYCLE.BIN/
 
 # Vim temporary swap files
 *.swp
+
+# Identiy server signing keys
+# Ignored by YP 08/08/2024
+src/IdentityService/keys/
