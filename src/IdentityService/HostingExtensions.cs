@@ -36,6 +36,12 @@ internal static class HostingExtensions
             .AddInMemoryClients(Config.Clients)
             .AddAspNetIdentity<ApplicationUser>();
 
+        // Need this for running on HTTP. - added by YP 08/08/2024
+        builder.Services.ConfigureApplicationCookie(options =>
+        {
+            options.Cookie.SameSite = SameSiteMode.Lax;
+        });
+
         builder.Services.AddAuthentication();
         /* commentingout Google auth for now; -YP: 08/08/2024
         .AddGoogle(options =>
