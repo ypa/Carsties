@@ -22,6 +22,8 @@ try
 
     // this seeding is only for the template to bootstrap the DB and users.
     // in production you will likely want a different approach.
+
+    /* commenting out: YP 08/08/2024
     if (args.Contains("/seed"))
     {
         Log.Information("Seeding database...");
@@ -29,6 +31,10 @@ try
         Log.Information("Done seeding database. Exiting.");
         return;
     }
+    */
+
+    // This will seed data every time we run the app; YP 08/08/2024
+    SeedData.EnsureSeedData(app);
 
     app.Run();
 }
