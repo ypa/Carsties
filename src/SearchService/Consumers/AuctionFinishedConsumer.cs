@@ -13,7 +13,7 @@ public class AuctionFinishedConsumer : IConsumer<AuctionFinished>
 
         if (context.Message.ItemSold)
         {
-            auction.Winner = context.Message.Winnter; // TODO: fix typo in the contracts
+            auction.Winner = context.Message.Winner;
             auction.SoldAmount = (int)context.Message.Amount;
         }
 
