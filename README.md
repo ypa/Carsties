@@ -23,3 +23,7 @@ docker compose up -d
 ```sh
 docker compose down
 ```
+
+## Debugging on VS Code
+
+How to at [Udemy video](https://www.udemy.com/course/build-a-microservices-app-with-dotnet-and-nextjs-from-scratch/learn/lecture/39040800#notes)
