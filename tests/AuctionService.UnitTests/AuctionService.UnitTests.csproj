@@ -20,4 +20,8 @@
     <Using Include="Xunit" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\AuctionService\AuctionService.csproj" />
+  </ItemGroup>
+
 </Project>
