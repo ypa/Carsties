@@ -75,6 +75,19 @@ public class AuctionControllerTests : IClassFixture<CustomWebAppFactory>, IAsync
         Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
     }
 
+    [Fact]
+    public async Task CreatedAuction_WithNoAuth_ShouldReturn401()
+    {
+        // arrange
+        var auction = new CreateAuctionDto { Make = "test" };
+
+        // act
+        var response = await _httpClient.PostAsJsonAsync($"api/auctions", auction);
+
+        // assert
+        Assert.Equal(HttpStatusCode.Unauthorized, response.StatusCode);
+    }
+
 
     public Task InitializeAsync() => Task.CompletedTask;
 
