@@ -15,7 +15,7 @@ public class AuctionControllerTests : IAsyncLifetime
 {
     private readonly CustomWebAppFactory _factory;
     private readonly HttpClient _httpClient;
-    private const string GT_ID = "afbee524-5972-4075-8800-7d1f9d7b0a0c";
+    private const string _gT_ID = "afbee524-5972-4075-8800-7d1f9d7b0a0c";
 
     public AuctionControllerTests(CustomWebAppFactory factory)
     {
@@ -44,7 +44,7 @@ public class AuctionControllerTests : IAsyncLifetime
         // no op
 
         // act
-        var response = await _httpClient.GetFromJsonAsync<AuctionDto>($"api/auctions/{GT_ID}");
+        var response = await _httpClient.GetFromJsonAsync<AuctionDto>($"api/auctions/{_gT_ID}");
 
         // assert
         Assert.Equal("GT", response.Model);
@@ -130,13 +130,13 @@ public class AuctionControllerTests : IAsyncLifetime
         _httpClient.SetFakeJwtBearerToken(AuthHelper.GetBearerForUser("bob"));
 
         // act
-        var response = await _httpClient.PutAsJsonAsync($"api/auctions/{GT_ID}", updateAuction);
+        var response = await _httpClient.PutAsJsonAsync($"api/auctions/{_gT_ID}", updateAuction);
 
         // assert
         response.EnsureSuccessStatusCode();
         Assert.Equal(HttpStatusCode.OK, response.StatusCode);
 
-        var updatedResponse = await _httpClient.GetFromJsonAsync<AuctionDto>($"api/auctions/{GT_ID}");
+        var updatedResponse = await _httpClient.GetFromJsonAsync<AuctionDto>($"api/auctions/{_gT_ID}");
         Assert.Equal("Blue", updatedResponse.Color);
     }
 
@@ -148,14 +148,14 @@ public class AuctionControllerTests : IAsyncLifetime
         _httpClient.SetFakeJwtBearerToken(AuthHelper.GetBearerForUser("tim"));
 
         // act
-        var response = await _httpClient.PutAsJsonAsync($"api/auctions/{GT_ID}", updateAuction);
+        var response = await _httpClient.PutAsJsonAsync($"api/auctions/{_gT_ID}", updateAuction);
 
         // assert
         Assert.Equal(HttpStatusCode.Forbidden, response.StatusCode);
     }
 
 
-    private CreateAuctionDto GetAuctionForCreate()
+    private static CreateAuctionDto GetAuctionForCreate()
     {
         return new CreateAuctionDto
         {
