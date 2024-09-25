@@ -35,7 +35,7 @@ export default async function Details({ params }: { params: { id: string } }) {
           <CarImage imageUrl={data.imageUrl} />
         </div>
         <div className="border-2 rounded-lg p-2 bg-gray-100">
-          <Heading title="Bids" />
+          <Heading title="Bids" subtitle="Bids" />
         </div>
       </div>
 
