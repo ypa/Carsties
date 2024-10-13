@@ -10,7 +10,7 @@ type Props = {
 export default function AuctionCreatedToast({ auction }: Props) {
   return (
     <Link
-      href={`/auction/details/${auction.id}`}
+      href={`/auctions/details/${auction.id}`}
       className="flex flex-col items-center"
     >
       <div className="flex flex-row items-center gap-2">
