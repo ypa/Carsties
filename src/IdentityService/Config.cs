@@ -17,7 +17,7 @@ public static class Config
             new ApiScope("auctionApp", "Auction app full access"),
         };
 
-    public static IEnumerable<Client> Clients =>
+    public static IEnumerable<Client> Clients(IConfiguration config) =>
         new Client[]
         {
             new Client
@@ -38,7 +38,7 @@ public static class Config
                 // For a mobile app client use GrantTypes.Code -- YP 08/17/2024
                 AllowedGrantTypes = GrantTypes.CodeAndClientCredentials,
                 RequirePkce = false, // For a mobile app client use true -- YP 08/17/2024
-                RedirectUris = {"http://localhost:3000/api/auth/callback/id-server"},
+                RedirectUris = {config["ClientApp"] + "/api/auth/callback/id-server"}, // for dockerizing -- YP 10/15/2024
                 AllowOfflineAccess = true, // For refresh token functionality -- YP 08/17/2024
                 AllowedScopes = {"openid", "profile", "auctionApp"},
                 AccessTokenLifetime = 3600*24*30, // During development mode keep it 30 days for now, default is one hour -- YP 08/17/2024
