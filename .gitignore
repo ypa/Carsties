@@ -486,3 +486,6 @@ $RECYCLE.BIN/
 # Identiy server signing keys
 # Ignored by YP 08/08/2024
 src/IdentityService/keys/
+
+# Ignore dev certs for nginx SSL
+devcerts/
