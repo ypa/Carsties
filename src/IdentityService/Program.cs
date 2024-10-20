@@ -1,4 +1,6 @@
 ﻿using IdentityService;
+using Npgsql;
+using Polly;
 using Serilog;
 
 Log.Logger = new LoggerConfiguration()
@@ -33,8 +35,12 @@ try
     }
     */
 
+    var retryPolicy = Policy
+        .Handle<NpgsqlException>()
+        .WaitAndRetry(5, retryAttempt => TimeSpan.FromSeconds(5));
+
     // This will seed data every time we run the app; YP 08/08/2024
-    SeedData.EnsureSeedData(app);
+    retryPolicy.ExecuteAndCapture(() => SeedData.EnsureSeedData(app));
 
     app.Run();
 }
