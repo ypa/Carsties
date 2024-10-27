@@ -60,4 +60,7 @@ kubectl get deployments
 
 # restarting the deployed service
 kubectl rollout restart deployment auction-svc
+
+# get namespaces
+kubectl get namespaces
 ```
