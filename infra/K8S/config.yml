@@ -63,8 +63,8 @@ metadata:
   name: identity-svc-config
 data:
   ASPNETCORE_URLS: http://+:80
-  IssuerUri: http://id.carsties.local
-  ClientApp: http://app.carsties.local
+  IssuerUri: https://id.carsties.local
+  ClientApp: https://app.carsties.local
   ConnectionStrings__DefaultConnection: Server=postgres-clusterip;User Id=postgres;Password=postgrespw;Database=identity
 ---
 apiVersion: v1
@@ -73,9 +73,9 @@ metadata:
   name: webapp-svc-config
 data:
   AUTH_SECRET: "OINwJAq1soX3JfLoMWz0UzXEAjOMWiKO9BaUMEll+i0="
-  AUTH_URL: http://app.carsties.local
+  AUTH_URL: https://app.carsties.local
   AUTH_URL_INTERNAL: http://webapp-clusterip:3000
   API_URL: http://gateway-clusterip/
   ID_URL: http://id.carsties.local
   ID_URL_INTERNAL: http://identity-clusterip
-  NOTIFY_URL: http://api.carsties.local/notifications
+  NOTIFY_URL: https://api.carsties.local/notifications
