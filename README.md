@@ -64,3 +64,17 @@ kubectl rollout restart deployment auction-svc
 # get namespaces
 kubectl get namespaces
 ```
+
+### Installing SSL for K8S ingress
+
+```sh
+# from inside infra/devcerts
+mkcert -key-file server.key -cert-file server.crt app.carsties.local api.carsties.local id.carsties.local
+# then create kube secrets
+kubectl create secret tls carsties-app-tls --key server.key --cert server.crt
+kubectl get secrets
+
+# Update ingress-svc.yml file with corresponding values from above
+# then apply the changes
+kubectl apply -f ingress-svc.yml
+```
