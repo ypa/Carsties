@@ -89,7 +89,7 @@ kubectl get secrets
 kubectl apply -f ingress-svc.yml
 ```
 
-# Deploy services to local K8S
+## Deploy services to local K8S
 
 On Docker Desktop settings make sure Kubernetes is enabled and is running.
 
