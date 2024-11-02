@@ -63,6 +63,12 @@ kubectl rollout restart deployment auction-svc
 
 # get namespaces
 kubectl get namespaces
+
+# stop pods/ delete deployments
+kubectl delete deployment identity-svc
+kubectl delete deployment auction-svc
+kubectl delete deployment mongo
+...
 ```
 
 ### Installing SSL for K8S ingress
@@ -78,3 +84,12 @@ kubectl get secrets
 # then apply the changes
 kubectl apply -f ingress-svc.yml
 ```
+
+# Deploy all to local K8S
+
+```sh
+cd infra/K8S/
+kubectl apply -f .
+```
+
+Local url: https://app.carsties.local
