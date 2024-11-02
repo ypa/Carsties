@@ -22,10 +22,6 @@ docker compose up -d
 docker compose down
 ```
 
-## Debugging on VS Code
-
-How to at [Udemy video](https://www.udemy.com/course/build-a-microservices-app-with-dotnet-and-nextjs-from-scratch/learn/lecture/39040800#notes)
-
 ## Creating local dev certificates
 
 ```sh
@@ -122,3 +118,7 @@ webapp-svc-66fd5f8474-fqvrb     1/1     Running   0          86s
 ```
 
 Visit local url: https://app.carsties.local
+
+## Debugging on VS Code
+
+How to [video](https://www.udemy.com/course/build-a-microservices-app-with-dotnet-and-nextjs-from-scratch/learn/lecture/39040800#notes)
